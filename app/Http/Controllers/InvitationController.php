@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Mail;
 
 class InvitationController extends Controller
 {
-    public function send()
+    public function send(Request $request)
     {
         /**
          * user registation link
@@ -17,13 +17,13 @@ class InvitationController extends Controller
         $_SESSION['code'] = $code;
         $url = route('register.form', [
             'code' => $code,
-            'email' => 'akashdasmu@gmail.com'
+            'email' => $request->email
         ]);
 
         /**
          * send gamil to user
          */
-        Mail::send(new SendInvitationMail($url));
+        Mail::to($request->email)->send(new SendInvitationMail($url));
 
         /**
          * Send response to client

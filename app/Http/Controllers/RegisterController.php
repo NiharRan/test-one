@@ -38,7 +38,7 @@ class RegisterController extends Controller
             'email' => $email
         ]);
 
-        Mail::send(new SendVerificationCodeMail($url, $code));
+        Mail::to($email)->send(new SendVerificationCodeMail($url, $code));
 
         return response()->json([
             'user' => $user
