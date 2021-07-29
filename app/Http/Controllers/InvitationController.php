@@ -23,7 +23,7 @@ class InvitationController extends Controller
         /**
          * send gamil to user
          */
-        Mail::to('niharranjandasmu@gmail.com')->send(new SendInvitationMail($url));
+        Mail::send(new SendInvitationMail($url));
 
         /**
          * Send response to client
